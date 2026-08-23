@@ -1018,6 +1018,11 @@ footer {
   }
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @keyframes floatBounce {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);

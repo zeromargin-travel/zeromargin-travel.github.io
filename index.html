@@ -204,7 +204,13 @@
             </div>
 
             <p data-i18n="step2.subtitle" style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.25rem;">Check the boxes for spots you definitely want to visit. The AI engine will generate both Route A (Selected Spots Only) and Route B (Full 1-Day AI Course) for Google Maps navigation!</p>
-            <div id="candidateSpotsGrid" class="grid-3" style="display:grid !important; visibility:visible !important;"></div>
+            <div id="candidateSpotsGrid" class="grid-3" style="display:grid !important; visibility:visible !important;">
+              <div style="grid-column: 1 / -1; padding: 2.5rem 1rem; text-align: center; color: #FCD34D; font-weight: 700; background: rgba(15,23,42,0.6); border-radius: 16px; border: 1px dashed rgba(252,211,77,0.3);">
+                <span style="display:inline-block; font-size:1.8rem; animation:spin 1s linear infinite; margin-bottom:0.5rem;">⚡</span>
+                <div style="font-size:1rem; font-weight:800;" data-i18n="loading.database">Loading 1,370+ Verified Europe Spots...</div>
+                <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.3rem;">Preparing AI route data</div>
+              </div>
+            </div>
           </div>
 
                     <!-- Optional Custom Return Hotel Field -->
