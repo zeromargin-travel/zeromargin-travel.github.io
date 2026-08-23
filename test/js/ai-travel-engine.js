@@ -43,7 +43,8 @@ const AITravelEngine = {
         </div>`;
       }
       
-      const fileName = encodeURIComponent(cityId) + '.json';
+      const cleanCityName = cityId.split(',')[0].trim().toLowerCase().replace(/\s+/g, '_');
+      const fileName = cleanCityName + '.json';
       const response = await fetch('data/cities/' + fileName);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const spots = await response.json();
@@ -850,15 +851,15 @@ const AITravelEngine = {
           }
         }
       }
+      const container = document.getElementById('candidateSpotsGrid');
+      const counterBadge = document.getElementById('spotsCounterBadge');
+
       if (!spots || spots.length === 0) {
         if (container) {
           container.innerHTML = `<div style="grid-column:1/-1; padding:2rem; text-align:center; color:#F87171; font-weight:700;">⚠️ No spot data found for "${escapeHtml(city)}". Please select a different city.</div>`;
         }
         return;
       }
-
-      const container = document.getElementById('candidateSpotsGrid');
-      const counterBadge = document.getElementById('spotsCounterBadge');
 
       if (!container) return;
 
