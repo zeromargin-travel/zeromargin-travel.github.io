@@ -66,7 +66,6 @@ const AITravelEngine = {
       });
       
       candidateSpotsDatabase[cityId] = spots;
-      if (window.I18nEngine) window.I18nEngine.updatePage();
     } catch (error) {
       console.error(`Failed to load city database for ${cityId}:`, error);
       alert(`Debug Error fetching ${cityId}: ` + error.message);
