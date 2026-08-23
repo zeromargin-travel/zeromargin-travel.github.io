@@ -612,7 +612,7 @@ const AITravelEngine = {
   getLocalizedTip(spot) {
     if (!spot) return '';
     const lang = window.I18nEngine ? window.I18nEngine.currentLang : 'en';
-    return spot['tip_' + lang] || spot.tip_en || spot.tip_ja || '';
+    return spot['insiderTip_' + lang] || spot.insiderTip_en || '';
   },
   getLocalizedPrice(spot) {
     if (!spot) return '';
