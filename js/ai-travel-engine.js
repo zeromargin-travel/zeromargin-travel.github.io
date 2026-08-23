@@ -26,50 +26,77 @@ const AITravelEngine = {
 
   async init() {
     try {
-      const response = await fetch('data/spots.json');
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      candidateSpotsDatabase = await response.json();
-      
-      // *** Normalization Layer: Convert free-text strings and scattered booleans to strict tags ***
-      for (const city in candidateSpotsDatabase) {
-        if (!Array.isArray(candidateSpotsDatabase[city])) continue;
-        candidateSpotsDatabase[city].forEach(spot => {
-          const c = String(spot.category || '').toLowerCase();
-          spot.tags = {
-            isLandmark: c.includes('landmark') || c.includes('史跡') || c.includes('名所'),
-            isMuseum: c.includes('museum') || c.includes('art') || c.includes('ギャラリー') || c.includes('美術館') || c.includes('博物館'),
-            isCafe: c.includes('café') || c.includes('cafe') || c.includes('bistro') || c.includes('restaurant') || c.includes('dining') || c.includes('bakery') || c.includes('カフェ') || c.includes('レストラン'),
-            isScenery: c.includes('scenery') || c.includes('walk') || c.includes('park') || c.includes('プロムナード') || c.includes('散策'),
-            isKids: spot.kids === true || c.includes('kids'),
-            isShopping: spot.shopping === true || c.includes('shopping') || c.includes('market')
-          };
-          // Sync boolean flags for consistent UI rendering elsewhere
-          spot.kids = spot.tags.isKids;
-          spot.shopping = spot.tags.isShopping;
-        });
-      }
-      
       this.restoreStateFromUrl();
     } catch (error) {
-      console.error("Failed to load spot database:", error);
-      candidateSpotsDatabase = {};
+      console.error("Failed to initialize AITravelEngine:", error);
     }
   },
 
-  restoreStateFromUrl() {
+  async loadCityData(cityId) {
+    if (candidateSpotsDatabase[cityId]) return;
+    try {
+      const grid = document.getElementById('candidateSpotsGrid');
+      if (grid) {
+        grid.innerHTML = `<div style="text-align:center; padding:3rem; grid-column:1/-1;">
+          <div style="display:inline-block; animation:spin 1s linear infinite; font-size:2rem;">⚡️</div>
+          <div style="margin-top:1rem; color:var(--text-secondary); font-weight:bold;" data-i18n="loading.database">Loading Database...</div>
+        </div>`;
+      }
+      
+      const cleanCityName = cityId.split(',')[0].trim().toLowerCase().replace(/\s+/g, '_');
+      const fileName = cleanCityName + '.json';
+      const response = await fetch('data/cities/' + fileName);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const spots = await response.json();
+      
+      // *** Normalization Layer: Convert free-text strings and scattered booleans to strict tags ***
+      spots.forEach(spot => {
+        const c = String(spot.category || '').toLowerCase();
+        spot.tags = {
+          isLandmark: c.includes('landmark') || c.includes('史跡') || c.includes('名所'),
+          isMuseum: c.includes('museum') || c.includes('art') || c.includes('ギャラリー') || c.includes('美術館') || c.includes('博物館'),
+          isCafe: c.includes('café') || c.includes('cafe') || c.includes('bistro') || c.includes('restaurant') || c.includes('dining') || c.includes('bakery') || c.includes('カフェ') || c.includes('レストラン'),
+          isScenery: c.includes('scenery') || c.includes('walk') || c.includes('park') || c.includes('プロムナード') || c.includes('散策'),
+          isKids: spot.kids === true || c.includes('kids'),
+          isShopping: spot.shopping === true || c.includes('shopping') || c.includes('market')
+        };
+        // Sync boolean flags for consistent UI rendering elsewhere
+        spot.kids = spot.tags.isKids;
+        spot.shopping = spot.tags.isShopping;
+      });
+      
+      candidateSpotsDatabase[cityId] = spots;
+    } catch (error) {
+      console.error(`Failed to load city database for ${cityId}:`, error);
+      alert(`Debug Error fetching ${cityId}: ` + error.message);
+      candidateSpotsDatabase[cityId] = [];
+    }
+  },
+
+  async restoreStateFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const city = params.get('city');
     const spots = params.get('spots');
     
+    let targetCity = 'Paris, France';
+    
     if (city && spots) {
-      this.lastCity = decodeURIComponent(city);
+      targetCity = decodeURIComponent(city);
       const destElem = document.getElementById('aiPlanDestination');
-      if (destElem) destElem.value = this.lastCity;
+      if (destElem) destElem.value = targetCity;
       
       const spotIds = spots.split(',');
       this.selectedMustVisitIds.clear();
       spotIds.forEach(id => this.selectedMustVisitIds.add(id));
-      
+    } else {
+      const destElem = document.getElementById('aiPlanDestination');
+      if (destElem) targetCity = destElem.value || 'Paris, France';
+    }
+    
+    this.lastCity = targetCity;
+    await this.loadCityData(targetCity);
+    
+    if (city && spots) {
       setTimeout(() => {
         this.renderCandidateSpots();
         this.renderDualRouteManager(this.lastCity);
@@ -78,6 +105,8 @@ const AITravelEngine = {
           routeContainer.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
+    } else {
+      this.renderCandidateSpots();
     }
   },
 
@@ -522,7 +551,7 @@ const AITravelEngine = {
     return c.label;
   },
 
-  onCountryChange() {
+  async onCountryChange() {
     const countryElem = document.getElementById('aiPlanCountry');
     const destElem = document.getElementById('aiPlanDestination');
     if (!countryElem || !destElem) return;
@@ -535,6 +564,16 @@ const AITravelEngine = {
 
     destElem.innerHTML = cities.map(c => `<option value="${c.value}" ${c.value === targetVal ? 'selected' : ''}>${this.getLocalizedCityLabel(c)}</option>`).join('');
     destElem.value = targetVal;
+    
+    await this.loadCityData(targetVal);
+    this.renderCandidateSpots();
+  },
+
+  async onDestinationChange() {
+    const destElem = document.getElementById('aiPlanDestination');
+    if (!destElem) return;
+    const targetVal = destElem.value;
+    await this.loadCityData(targetVal);
     this.renderCandidateSpots();
   },
 
@@ -812,15 +851,15 @@ const AITravelEngine = {
           }
         }
       }
+      const container = document.getElementById('candidateSpotsGrid');
+      const counterBadge = document.getElementById('spotsCounterBadge');
+
       if (!spots || spots.length === 0) {
         if (container) {
           container.innerHTML = `<div style="grid-column:1/-1; padding:2rem; text-align:center; color:#F87171; font-weight:700;">⚠️ No spot data found for "${escapeHtml(city)}". Please select a different city.</div>`;
         }
         return;
       }
-
-      const container = document.getElementById('candidateSpotsGrid');
-      const counterBadge = document.getElementById('spotsCounterBadge');
 
       if (!container) return;
 
