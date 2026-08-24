@@ -328,10 +328,10 @@
       <button type="button" onclick="closeFeedbackModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.4rem; cursor:pointer; font-weight:bold; color:#78716C;">✕</button>
       
       <div style="font-size:1.15rem; font-weight:800; color:#047857; margin-bottom:0.4rem;" data-i18n="modal.feedbackTitle">
-        💬 ご意見・スポット情報の誤りを指摘
+        💬 Feedback & Spot Error Report
       </div>
       <p style="font-size:0.85rem; color:#57534E; margin-bottom:1rem; line-height:1.4;" data-i18n="modal.feedbackSub">
-        スポット情報の誤り、営業時間の間違い、改善のご意見などをお気軽にお寄せください。
+        Please let us know if you spot any incorrect info, wrong hours, or have suggestions for improvement.
       </p>
 
       <form action="https://formsubmit.co/yamasaki_jun@hotmail.com" method="POST">
@@ -340,22 +340,22 @@
         <input type="hidden" name="_captcha" value="false">
 
         <div style="margin-bottom:0.85rem;">
-          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.spotNameLabel">対象のスポット名・都市名:</label>
-          <input type="text" name="spot_name" required style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF;" data-i18n-placeholder="modal.spotNamePlaceholder" placeholder="例: ルーブル美術館 / パリ">
+          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.spotNameLabel">Target Spot / City Name:</label>
+          <input type="text" name="spot_name" required style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF;" data-i18n-placeholder="modal.spotNamePlaceholder" placeholder="e.g. Louvre Museum / Paris">
         </div>
 
         <div style="margin-bottom:0.85rem;">
-          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.detailsLabel">誤りの内容・ご意見:</label>
-          <textarea name="details" required rows="4" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF; resize:vertical;" data-i18n-placeholder="modal.detailsPlaceholder" placeholder="間違っている情報や修正案をご記入ください..."></textarea>
+          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.detailsLabel">Details / Feedback:</label>
+          <textarea name="details" required rows="4" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF; resize:vertical;" data-i18n-placeholder="modal.detailsPlaceholder" placeholder="Describe the incorrect info or your suggestion..."></textarea>
         </div>
 
         <div style="margin-bottom:1.1rem;">
-          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.emailLabel">ご連絡先メールアドレス（任意）:</label>
-          <input type="email" name="user_email" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF;" data-i18n-placeholder="modal.emailPlaceholder" placeholder="your.email@example.com （返信をご希望の場合）">
+          <label style="display:block; font-size:0.82rem; font-weight:800; color:#292524; margin-bottom:0.25rem;" data-i18n="modal.emailLabel">Your Email (Optional):</label>
+          <input type="email" name="user_email" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #292524; border-radius:10px; font-size:0.88rem; background:#FFF;" data-i18n-placeholder="modal.emailPlaceholder" placeholder="your.email@example.com">
         </div>
 
         <button type="submit" style="width:100%; background:#047857; color:#FFF; border:2px solid #292524; padding:0.7rem; border-radius:12px; font-size:0.95rem; font-weight:800; cursor:pointer; box-shadow:3px 3px 0px #292524;" data-i18n="modal.sendBtn">
-          ✉️ ご意見・誤り指摘を送信する
+          ✉️ Send Feedback / Report Error
         </button>
       </form>
     </div>
@@ -367,12 +367,12 @@
       <button type="button" onclick="closeTermsModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.4rem; cursor:pointer; font-weight:bold; color:#78716C;">✕</button>
       
       <div style="font-size:1.15rem; font-weight:800; color:#047857; margin-bottom:0.75rem; border-bottom:1.5px dashed #CBD5E1; padding-bottom:0.5rem;" data-i18n="modal.termsTitle">
-        ⚖️ 利用規約・免責事項
+        ⚖️ Terms of Use & Legal Disclaimer
       </div>
       
       <div style="font-size:0.88rem; color:#44403C; line-height:1.6; white-space:pre-wrap;" data-i18n="modal.termsBody">
-        当サイト「0 Margin Travel(EU)」で提供するスポット情報、営業時間、位置情報、ルート案内等の正確性については細心の注意を払っておりますが、その完全性や最新性を保証するものではありません。
-        実際の訪問に際しては、事前に施設公式情報等をご確認ください。当サイトの利用によって生じた損害・トラブル・不利益等について、当管理者は一切の責任を負いかねます。あらかじめご了承の上、自己責任にてご利用ください。
+        While we take great care to ensure the accuracy of the spot information, opening hours, location data, and routing provided by "0 Margin Travel(EU)", we do not guarantee its completeness or recency.
+        Please verify with official venue sources before your actual visit. The administrators shall not be held liable for any damages, troubles, or disadvantages arising from the use of this site. By using this site, you agree to do so at your own risk.
       </div>
 
       <div style="margin-top:1.25rem; text-align:right;">
