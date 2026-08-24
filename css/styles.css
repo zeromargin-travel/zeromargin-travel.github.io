@@ -138,6 +138,11 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
+/* 0とMの間がくっつきすぎるのを防ぐため、テキストデータにはスペースを入れずに視覚的余白だけを追加 */
+.brand-title::first-letter {
+  margin-right: 0.15em;
+}
+
 .brand-badge {
   font-size: 0.72rem;
   background: rgba(245, 158, 11, 0.25);
