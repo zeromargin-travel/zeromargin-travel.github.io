@@ -1487,6 +1487,15 @@ const viewModeBarHtml = categoryFilterBarHtml + `
           </p>
         </div>
 
+        <!-- Bookmark Pre-Map Reminder -->
+        <div style="background-color:#FEF3C7; color:#92400E; padding:1rem; border-radius:12px; border:2px dashed #FDE68A; margin-bottom:1.5rem; display:flex; align-items:flex-start; gap:0.75rem; text-align:left;">
+          <span style="font-size:1.5rem; line-height:1;">⭐</span>
+          <div>
+            <h4 style="margin:0 0 0.25rem 0; font-size:1.05rem; color:#78350F;">${t('bookmark.modalTitle')}</h4>
+            <p style="margin:0; font-size:0.85rem; font-weight:600;">${t('bookmark.modalText')}</p>
+          </div>
+        </div>
+
         <div class="grid-2" style="gap:1.5rem;">
           
           <!-- ROUTE A CARD: Selected Spots Only -->

@@ -38,11 +38,27 @@
 </head>
 <body>
 
-  <!-- Top Slogan Banner -->
   <div class="slogan-banner">
     <span>✨</span>
     <span data-i18n="banner.text">✨ 0 Margin Travel: Free AI Europe Trip Planner & Multi-Stop Google Maps Navigation</span>
   </div>
+
+  <!-- Bookmark Top Banner -->
+  <div id="bookmarkTopBanner" style="display:none; background-color:#FEF3C7; color:#92400E; padding:0.5rem 1rem; text-align:center; font-size:0.85rem; font-weight:600; border-bottom:1px solid #FDE68A; position:relative; z-index:40;">
+    <span data-i18n="bookmark.topBanner">⭐ Tip: Bookmark this page (Ctrl+D) to easily plan your next European trip!</span>
+    <button onclick="dismissBookmarkBanner()" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:#92400E; font-size:1.2rem; cursor:pointer;">&times;</button>
+  </div>
+  <script>
+    function dismissBookmarkBanner() {
+      document.getElementById('bookmarkTopBanner').style.display = 'none';
+      localStorage.setItem('bookmarkBannerDismissed', 'true');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('bookmarkBannerDismissed')) {
+        document.getElementById('bookmarkTopBanner').style.display = 'block';
+      }
+    });
+  </script>
 
   <!-- Navbar -->
   <header class="navbar">

@@ -8,6 +8,9 @@ const I18nEngine = {
   translations: {
     "en": {
       "share.toastCopied": "Link copied to clipboard! ✨",
+      "bookmark.topBanner": "⭐ Tip: Bookmark this page (Ctrl+D) to easily plan your next European trip!",
+      "bookmark.modalTitle": "Before you go!",
+      "bookmark.modalText": "Save this tool to your bookmarks (or add to home screen) so you can quickly create tomorrow's route.",
       "share.nativeShare": "More Apps...",
 
       "share.generalTitle": "Share this site",
@@ -107,6 +110,9 @@ const I18nEngine = {
     },
     "ja": {
       "share.toastCopied": "URLをコピーしました！ ✨",
+      "bookmark.topBanner": "⭐ Tip: 次回のヨーロッパ旅行もすぐ計画できるよう、このページをブックマーク（Ctrl+D）してください！",
+      "bookmark.modalTitle": "マップを開く前に！",
+      "bookmark.modalText": "明日のルートもすぐ作れるように、このツールをブックマーク（またはホーム画面に追加）しておきましょう。",
       "share.nativeShare": "他のアプリで共有",
 
       "share.generalTitle": "このサイトをシェアする",
@@ -206,6 +212,9 @@ const I18nEngine = {
     },
     "nl": {
       "share.toastCopied": "Link gekopieerd naar klembord! ✨",
+      "bookmark.topBanner": "⭐ Tip: Bladwijzer deze pagina (Ctrl+D) om eenvoudig je volgende Europese reis te plannen!",
+      "bookmark.modalTitle": "Voordat je gaat!",
+      "bookmark.modalText": "Sla deze tool op in je bladwijzers (of voeg toe aan startscherm) zodat je snel de route van morgen kunt maken.",
       "share.nativeShare": "Meer apps...",
 
       "share.generalTitle": "Deel deze site",
@@ -305,6 +314,9 @@ const I18nEngine = {
     },
     "fr": {
       "share.toastCopied": "Lien copié dans le presse-papiers ! ✨",
+      "bookmark.topBanner": "⭐ Astuce : Mettez cette page en favori (Ctrl+D) pour planifier facilement votre prochain voyage européen !",
+      "bookmark.modalTitle": "Avant de partir !",
+      "bookmark.modalText": "Enregistrez cet outil dans vos favoris (ou ajoutez à l'écran d'accueil) pour créer rapidement l'itinéraire de demain.",
       "share.nativeShare": "Plus d'applis...",
 
       "share.generalTitle": "Partager ce site",
@@ -404,6 +416,9 @@ const I18nEngine = {
     },
     "de": {
       "share.toastCopied": "Link in die Zwischenablage kopiert! ✨",
+      "bookmark.topBanner": "⭐ Tipp: Lesezeichen für diese Seite setzen (Strg+D), um deine nächste Europareise einfach zu planen!",
+      "bookmark.modalTitle": "Bevor du gehst!",
+      "bookmark.modalText": "Speichere dieses Tool in deinen Lesezeichen (oder auf dem Startbildschirm), damit du die morgige Route schnell erstellen kannst.",
       "share.nativeShare": "Mehr Apps...",
 
       "share.generalTitle": "Diese Seite teilen",
@@ -503,6 +518,9 @@ const I18nEngine = {
     },
     "es": {
       "share.toastCopied": "¡Enlace copiado al portapapeles! ✨",
+      "bookmark.topBanner": "⭐ Consejo: ¡Guarda esta página en favoritos (Ctrl+D) para planificar fácilmente tu próximo viaje europeo!",
+      "bookmark.modalTitle": "¡Antes de que te vayas!",
+      "bookmark.modalText": "Guarda esta herramienta en tus favoritos (o añade a la pantalla de inicio) para poder crear rápidamente la ruta de mañana.",
       "share.nativeShare": "Más aplicaciones...",
 
       "share.generalTitle": "Compartir este sitio",
@@ -602,6 +620,9 @@ const I18nEngine = {
     },
     "zh": {
       "share.toastCopied": "链接已复制到剪贴板！ ✨",
+      "bookmark.topBanner": "⭐ 提示：将此页面加入书签 (Ctrl+D)，轻松规划您的下一次欧洲之旅！",
+      "bookmark.modalTitle": "出发前请注意！",
+      "bookmark.modalText": "将此工具保存到书签（或添加到主屏幕），以便快速创建明天的路线。",
       "share.nativeShare": "更多应用...",
 
       "share.generalTitle": "分享这个网站",
