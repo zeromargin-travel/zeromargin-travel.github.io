@@ -339,7 +339,7 @@ const AITravelEngine = {
 
   lastCity: '',
   selectedMustVisitIds: new Set(),
-  viewMode: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'compact' : 'grid',
+  viewMode: 'grid',
   activePreset: 'ALL',
   activeGenre: 'ALL',
   activeConditions: new Set(),
@@ -988,11 +988,11 @@ const viewModeBarHtml = categoryFilterBarHtml + `
             <span style="font-size:0.8rem; color:#FCD34D;">(${filteredSpots.length} ${t('view.matching')})</span>
           </div>
           <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-            <button type="button" class="view-mode-btn ${this.viewMode === 'compact' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('compact')">
-              ${t('view.compact')}
-            </button>
             <button type="button" class="view-mode-btn ${this.viewMode === 'grid' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('grid')">
               ${t('view.grid')}
+            </button>
+            <button type="button" class="view-mode-btn ${this.viewMode === 'compact' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('compact')">
+              ${t('view.compact')}
             </button>
           </div>
         </div>
@@ -1485,6 +1485,15 @@ const viewModeBarHtml = categoryFilterBarHtml + `
           <p style="font-size:0.9rem; color:var(--text-secondary);">
             ${t('route.sub')}
           </p>
+        </div>
+
+        <!-- Bookmark Pre-Map Reminder -->
+        <div style="background: linear-gradient(135deg, #4F46E5, #2563EB); color:#FFFFFF; padding:1.25rem; border-radius:16px; margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem; text-align:left; box-shadow: 0 4px 15px rgba(37,99,235,0.4); border:2px solid #93C5FD;">
+          <div style="font-size:2.2rem; line-height:1; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));">💡</div>
+          <div>
+            <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem; font-weight:800; text-shadow: 0 1px 2px rgba(0,0,0,0.3); color:#EFF6FF;">${t('bookmark.modalTitle')}</h4>
+            <p style="margin:0; font-size:0.95rem; font-weight:600; opacity:0.95; color:#DBEAFE;">${t('bookmark.modalText')}</p>
+          </div>
         </div>
 
         <div class="grid-2" style="gap:1.5rem;">
