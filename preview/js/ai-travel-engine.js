@@ -988,11 +988,11 @@ const viewModeBarHtml = categoryFilterBarHtml + `
             <span style="font-size:0.8rem; color:#FCD34D;">(${filteredSpots.length} ${t('view.matching')})</span>
           </div>
           <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-            <button type="button" class="view-mode-btn ${this.viewMode === 'compact' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('compact')">
-              ${t('view.compact')}
-            </button>
             <button type="button" class="view-mode-btn ${this.viewMode === 'grid' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('grid')">
               ${t('view.grid')}
+            </button>
+            <button type="button" class="view-mode-btn ${this.viewMode === 'compact' ? 'active' : ''}" onclick="AITravelEngine.setViewMode('compact')">
+              ${t('view.compact')}
             </button>
           </div>
         </div>
