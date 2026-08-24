@@ -115,10 +115,11 @@
   <section class="hero-section" style="position:relative; overflow:hidden;">
     <div class="container" style="display:flex; flex-direction:column; align-items:center;">
       
-      <!-- Character Mascot Companion Badge -->
-      <div class="mascot-hero-badge" style="display:inline-flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.92); border:2px solid var(--border-ink); border-radius:50px; padding:0.4rem 1.2rem 0.4rem 0.6rem; box-shadow:var(--shadow-sketch); margin-bottom:1rem; cursor:pointer;" onclick="document.getElementById('aiPlanDestination').scrollIntoView({behavior:'smooth'})">
+      <!-- Character Mascot Companion Badge (Clickable Button) -->
+      <div class="mascot-hero-badge" style="display:inline-flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.95); border:2px solid var(--border-ink); border-radius:50px; padding:0.4rem 1.2rem 0.4rem 0.6rem; box-shadow:0 4px 10px rgba(0,0,0,0.15); margin-bottom:1rem; cursor:pointer; transition:all 0.2s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';" onclick="document.getElementById('step1Anchor').scrollIntoView({behavior:'smooth'})">
         <img src="assets/mascot.png" alt="Mascot Guide" style="width:48px; height:48px; object-fit:contain; animation:floatBounce 3s ease-in-out infinite;">
-        <span data-i18n="hero.badge" style="font-size:0.95rem; font-weight:800; color:var(--primary-forest);">✨ 100% Free • Zero Research Fatigue • Instant Route Generator</span>
+        <span data-i18n="hero.badge" style="font-size:0.95rem; font-weight:800; color:var(--primary-forest);">✨ 100% Free • Zero Research Fatigue • AI Route Generator</span>
+        <span style="font-size:1.2rem;">👇</span>
       </div>
 
       <h1 class="hero-title" data-i18n="hero.title" style="font-size:2.8rem; margin-bottom:0.75rem;">Explore Europe Smarter with Instant Google Maps Routes.</h1>
@@ -135,7 +136,7 @@
 
       <!-- Prominent Primary CTA Button -->
       <div class="hero-buttons">
-        <button class="btn btn-primary" data-i18n="hero.cta" onclick="document.getElementById('aiPlanDestination').scrollIntoView({behavior:'smooth'})">🗺️ Create Custom Travel Route</button>
+        <button class="btn btn-primary" data-i18n="hero.cta" onclick="document.getElementById('step1Anchor').scrollIntoView({behavior:'smooth'})">👇 Choose your destination</button>
       </div>
 
     </div>
@@ -156,7 +157,7 @@
         <form id="aiPlannerForm" onsubmit="AITravelEngine.generateItinerary(event)">
           
           <!-- STEP 1: TRIP PARAMETERS -->
-          <div class="step1-container" style="margin-bottom:1.5rem;">
+          <div class="step1-container" id="step1Anchor" style="margin-bottom:1.5rem;">
             <div style="font-size:1.15rem; font-weight:800; color:#FCD34D; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; text-shadow:0 0 10px rgba(252,211,77,0.3);" class="font-serif">
               <img src="assets/mascot.png" alt="Mascot Guide" style="width:34px; height:34px; object-fit:contain; filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.12));">
               <span data-i18n="step1.title">Step 1️⃣: Choose Destination — Select your country & city</span>
