@@ -23,10 +23,14 @@ def generate_paris_lp():
         category = s.get('category', 'Attraction')
         rating = s.get('rating', '4.5')
         
+        img_src = s.get('image', '')
+        if img_src and not img_src.startswith('http') and not img_src.startswith('data:'):
+            img_src = f"../{img_src}"
+        
         spots_html += f"""
         <div class="spot-card" style="margin-bottom:2.5rem; background:#FFF; border-radius:16px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.05); border:1px solid #E2E8F0;">
             <div style="height:250px; overflow:hidden; position:relative;">
-                <img src="../{s.get('image')}" alt="{s.get('name')}" style="width:100%; height:100%; object-fit:cover;">
+                <img src="{img_src}" alt="{s.get('name')}" style="width:100%; height:100%; object-fit:cover;">
                 <div style="position:absolute; top:1rem; left:1rem; background:rgba(0,0,0,0.75); color:#FFF; padding:0.25rem 0.75rem; border-radius:50px; font-weight:bold; font-size:0.85rem;">
                     ★ {rating}
                 </div>
