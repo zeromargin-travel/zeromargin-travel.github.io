@@ -1,5 +1,5 @@
 /* ==========================================================================
-   0 Margin Travel — App Controller, Savings Calculator & Member Gamification
+   0Margin Travel — App Controller, Savings Calculator & Member Gamification
    ========================================================================== */
 
 function switchTab(tabId) {
@@ -75,7 +75,7 @@ function calculateMemberRank(pts, isVerified) {
   } else if (basePoints >= 100) {
     return { title: 'Sprout Fellow', icon: '🌿', color: '#16A34A', level: 2, nextPts: 250, desc: 'Actively connecting with local companions' };
   } else {
-    return { title: 'Seed Traveler', icon: '🌱', color: '#C2410C', level: 1, nextPts: 100, desc: 'Starting your 0 Margin Travel journey' };
+    return { title: 'Seed Traveler', icon: '🌱', color: '#C2410C', level: 1, nextPts: 100, desc: 'Starting your 0Margin Travel journey' };
   }
 }
 
@@ -111,7 +111,7 @@ function handleRegisterSubmit(event) {
   if (wantVerified) {
     openVerifyModal();
   } else {
-    alert(`Welcome to 0 Margin Travel, ${name}!\nMember ID: ${memberId}\nYour rank: 🌱 Seed Traveler (50 pts)`);
+    alert(`Welcome to 0Margin Travel, ${name}!\nMember ID: ${memberId}\nYour rank: 🌱 Seed Traveler (50 pts)`);
   }
 }
 

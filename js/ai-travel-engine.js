@@ -188,7 +188,7 @@ const AITravelEngine = {
     if (platform === 'native') {
       if (navigator.share) {
         navigator.share({
-          title: '0 Margin Travel',
+          title: '0Margin Travel',
           text: decodedText,
           url: decodedUrl
         }).catch(() => {});
