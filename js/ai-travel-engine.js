@@ -1488,11 +1488,11 @@ const viewModeBarHtml = categoryFilterBarHtml + `
         </div>
 
         <!-- Bookmark Pre-Map Reminder -->
-        <div style="background: linear-gradient(135deg, #F59E0B, #F97316); color:#FFFFFF; padding:1.25rem; border-radius:16px; margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem; text-align:left; box-shadow: 0 4px 15px rgba(245,158,11,0.3); border:2px solid #FFF;">
-          <div style="font-size:2rem; line-height:1; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));">📌</div>
+        <div style="background: linear-gradient(135deg, #4F46E5, #2563EB); color:#FFFFFF; padding:1.25rem; border-radius:16px; margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem; text-align:left; box-shadow: 0 4px 15px rgba(37,99,235,0.4); border:2px solid #93C5FD;">
+          <div style="font-size:2.2rem; line-height:1; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));">💡</div>
           <div>
-            <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem; font-weight:800; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">${t('bookmark.modalTitle')}</h4>
-            <p style="margin:0; font-size:0.95rem; font-weight:600; opacity:0.95;">${t('bookmark.modalText')}</p>
+            <h4 style="margin:0 0 0.4rem 0; font-size:1.15rem; font-weight:800; text-shadow: 0 1px 2px rgba(0,0,0,0.3); color:#EFF6FF;">${t('bookmark.modalTitle')}</h4>
+            <p style="margin:0; font-size:0.95rem; font-weight:600; opacity:0.95; color:#DBEAFE;">${t('bookmark.modalText')}</p>
           </div>
         </div>
 
