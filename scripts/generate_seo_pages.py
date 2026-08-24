@@ -17,11 +17,13 @@ def generate_paris_lp():
         
     spots_html = ""
     for idx, s in enumerate(top_spots):
-        insider_tip = s.get('insider_tip', '')
+        # Fallback through different tip and description keys
+        insider_tip = s.get('insiderTip_en') or s.get('tip') or s.get('insiderTip_fr') or ''
         tip_html = f'<div style="margin-top:1rem; background:#FFFBEB; border-left:4px solid #F59E0B; padding:0.75rem; font-size:0.9rem; color:#92400E;"><strong>💡 Insider Tip:</strong> {insider_tip}</div>' if insider_tip else ''
         
         category = s.get('category', 'Attraction')
         rating = s.get('rating', '4.5')
+        desc = s.get('desc_en') or s.get('desc') or ''
         
         img_src = s.get('image', '')
         if img_src and not img_src.startswith('http') and not img_src.startswith('data:'):
@@ -40,7 +42,7 @@ def generate_paris_lp():
             </div>
             <div style="padding:1.5rem;">
                 <h3 style="margin:0 0 1rem 0; font-size:1.5rem; color:#0F172A;">{idx+1}. {s.get('name')}</h3>
-                <p style="margin:0 0 1rem 0; font-size:1rem; color:#475569; line-height:1.7;">{s.get('description', '')}</p>
+                <p style="margin:0 0 1rem 0; font-size:1rem; color:#475569; line-height:1.7;">{desc}</p>
                 {tip_html}
             </div>
         </div>
