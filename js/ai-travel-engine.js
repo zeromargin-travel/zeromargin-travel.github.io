@@ -339,7 +339,7 @@ const AITravelEngine = {
 
   lastCity: '',
   selectedMustVisitIds: new Set(),
-  viewMode: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'compact' : 'grid',
+  viewMode: 'grid',
   activePreset: 'ALL',
   activeGenre: 'ALL',
   activeConditions: new Set(),
