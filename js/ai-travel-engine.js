@@ -75,28 +75,60 @@ const AITravelEngine = {
 
   async restoreStateFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    const city = params.get('city');
-    const spots = params.get('spots');
+    const urlCountry = params.get('country');
+    const urlCity = params.get('city');
+    const urlSpots = params.get('spots');
     
     let targetCity = 'Paris, France';
-    
-    if (city && spots) {
-      targetCity = decodeURIComponent(city);
+
+    if (urlCountry) {
+      const countryElem = document.getElementById('aiPlanCountry');
+      if (countryElem) {
+        for (let i = 0; i < countryElem.options.length; i++) {
+          if (countryElem.options[i].value === urlCountry || countryElem.options[i].text.includes(urlCountry)) {
+            countryElem.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      // Populate city dropdown manually based on country
+      const cities = this.countryCityMap[urlCountry] || this.countryCityMap['France'];
       const destElem = document.getElementById('aiPlanDestination');
-      if (destElem) destElem.value = targetCity;
-      
-      const spotIds = spots.split(',');
-      this.selectedMustVisitIds.clear();
-      spotIds.forEach(id => this.selectedMustVisitIds.add(id));
+      if (destElem) {
+         destElem.innerHTML = cities.map(c => `<option value="${c.value}">${this.getLocalizedCityLabel(c)}</option>`).join('');
+      }
+    }
+    
+    if (urlCity) {
+      const decodedCity = decodeURIComponent(urlCity);
+      targetCity = decodedCity;
+      const destElem = document.getElementById('aiPlanDestination');
+      if (destElem) {
+        let found = false;
+        for (let i = 0; i < destElem.options.length; i++) {
+          if (destElem.options[i].value === decodedCity) {
+            destElem.selectedIndex = i;
+            found = true;
+            break;
+          }
+        }
+        if (!found) destElem.value = decodedCity;
+      }
     } else {
       const destElem = document.getElementById('aiPlanDestination');
       if (destElem) targetCity = destElem.value || 'Paris, France';
+    }
+
+    if (urlCity && urlSpots) {
+      const spotIds = urlSpots.split(',');
+      this.selectedMustVisitIds.clear();
+      spotIds.forEach(id => this.selectedMustVisitIds.add(id));
     }
     
     this.lastCity = targetCity;
     await this.loadCityData(targetCity);
     
-    if (city && spots) {
+    if (urlCity && urlSpots) {
       setTimeout(() => {
         this.renderCandidateSpots();
         this.renderDualRouteManager(this.lastCity);
@@ -106,7 +138,9 @@ const AITravelEngine = {
         }
       }, 100);
     } else {
-      this.renderCandidateSpots();
+      setTimeout(() => {
+        this.renderCandidateSpots();
+      }, 100);
     }
   },
 
