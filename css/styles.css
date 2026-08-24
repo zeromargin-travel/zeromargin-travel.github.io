@@ -134,6 +134,7 @@ h1, h2, h3, h4 {
   font-weight: 800;
   letter-spacing: -0.02em;
   font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
   line-height: 1.2;
 }
 
