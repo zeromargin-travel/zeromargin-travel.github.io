@@ -24,6 +24,15 @@ function getCategoryIcon(cat) {
 const AITravelEngine = {
   selectedMustVisitIds: new Set(),
 
+  trackEvent(eventName, parameters) {
+    if (typeof window.gtag !== 'function') return;
+    try {
+      window.gtag('event', eventName, parameters);
+    } catch (error) {
+      console.warn(`Analytics event failed: ${eventName}`, error);
+    }
+  },
+
   async init() {
     try {
       this.restoreStateFromUrl();
@@ -1401,6 +1410,7 @@ const viewModeBarHtml = categoryFilterBarHtml + `
     
     // Extract checked must-visit spots
     let checkedSpots = allSpots.filter(s => selectedIds.has(s.id));
+    const selectedCount = checkedSpots.length;
     if (checkedSpots.length === 0) {
       checkedSpots = allSpots.slice(0, 3);
     }
@@ -1488,10 +1498,13 @@ const viewModeBarHtml = categoryFilterBarHtml + `
       this.routeB_spots.push(returnHotelObj);
     }
 
-    this.renderDualRouteManager(destination);
+    this.renderDualRouteManager(destination, {
+      trackGeneration: true,
+      selectedCount
+    });
   },
 
-  renderDualRouteManager(destination) {
+  renderDualRouteManager(destination, analytics = {}) {
     const resultContainer = document.getElementById('aiPlanResult');
     if (!resultContainer) return;
 
@@ -1637,6 +1650,30 @@ const viewModeBarHtml = categoryFilterBarHtml + `
     if (window.I18nEngine) {
       window.I18nEngine.applyLanguage(window.I18nEngine.currentLang);
     }
+
+    if (analytics.trackGeneration) {
+      this.trackEvent('route_generated', {
+        city: cityClean,
+        selected_count: analytics.selectedCount,
+        route_a_stop_count: this.routeA_spots.length,
+        route_b_stop_count: this.routeB_spots.length,
+        has_hotel: this.routeA_spots.some(spot => spot.isHotel === true)
+      });
+    }
+
+    ['A', 'B'].forEach(routeType => {
+      const mapsButton = document.getElementById(`btn_maps_Route${routeType}`);
+      if (!mapsButton) return;
+      mapsButton.addEventListener('click', () => {
+        const routeSpots = routeType === 'A' ? this.routeA_spots : this.routeB_spots;
+        const currentDestination = document.getElementById('aiPlanDestination')?.value || destination;
+        this.trackEvent('maps_opened', {
+          city: currentDestination.split(',')[0].trim(),
+          route_type: routeType,
+          stop_count: routeSpots.length
+        });
+      });
+    });
 
     setTimeout(() => {
       resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
