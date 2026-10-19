@@ -128,27 +128,25 @@ const AITravelEngine = {
       if (destElem) targetCity = destElem.value || 'Paris, France';
     }
 
-    if (urlCity && urlSpots) {
-      const spotIds = urlSpots.split(',');
+    if (urlSpots) {
+      const spotIds = urlSpots.split(',').map(s => s.trim()).filter(Boolean);
       this.selectedMustVisitIds.clear();
-      spotIds.forEach(id => this.selectedMustVisitIds.add(id));
+      spotIds.slice(0, 8).forEach(id => this.selectedMustVisitIds.add(id));
     }
     
     this.lastCity = targetCity;
     await this.loadCityData(targetCity);
     
-    if (urlCity && urlSpots) {
-      setTimeout(() => {
+    if (urlSpots && this.selectedMustVisitIds.size > 0) {
+      setTimeout(async () => {
         this.renderCandidateSpots();
-        this.renderDualRouteManager(this.lastCity);
-        const routeContainer = document.getElementById('routeContainer');
-        if (routeContainer) {
-          routeContainer.scrollIntoView({ behavior: 'smooth' });
-        }
+        this.updateFloatingCtaBar();
+        await this.generateItinerary();
       }, 100);
     } else {
       setTimeout(() => {
         this.renderCandidateSpots();
+        this.updateFloatingCtaBar();
       }, 100);
     }
   },
@@ -156,7 +154,7 @@ const AITravelEngine = {
   shareGeneral(platform) {
     const t = (k) => window.I18nEngine ? window.I18nEngine.getText(k) : k;
     const text = encodeURIComponent(t('share.generalText') || 'A free app that automatically plans optimal Europe travel routes. Very helpful! ✈️ #0MarginTravel');
-    const url = encodeURIComponent('https://zeromargin-travel.github.io/');
+    const url = encodeURIComponent(window.location.origin + window.location.pathname);
     this.openShareLink(platform, text, url);
   },
 
@@ -168,7 +166,7 @@ const AITravelEngine = {
     
     const text = encodeURIComponent(baseText);
     const spotIds = Array.from(this.selectedMustVisitIds).join(',');
-    const routeUrl = `https://zeromargin-travel.github.io/?city=${encodeURIComponent(this.lastCity)}&spots=${spotIds}`;
+    const routeUrl = `${window.location.origin}${window.location.pathname}?city=${encodeURIComponent(this.lastCity)}&spots=${spotIds}`;
     this.openShareLink(platform, text, encodeURIComponent(routeUrl));
   },
 
